@@ -1,4 +1,4 @@
 class Upvote < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :stances
+  belongs_to :user
+  belongs_to :stance
 end
