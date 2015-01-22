@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122230004) do
+ActiveRecord::Schema.define(version: 20150122230339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bill_votes", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "politician_id"
+  end
 
   create_table "issues", force: :cascade do |t|
     t.text "description"
