@@ -17,41 +17,41 @@ ActiveRecord::Schema.define(version: 20150123001103) do
   enable_extension "plpgsql"
 
   create_table "bill_votes", force: :cascade do |t|
-    t.integer "bill_id"
-    t.integer "politician_id"
+    t.integer "bill_id",       null: false
+    t.integer "politician_id", null: false
   end
 
   create_table "bills", force: :cascade do |t|
-    t.string "title"
+    t.string "title",          null: false
     t.string "summary"
     t.string "official_title"
     t.string "short_title"
     t.string "popular_title"
-    t.string "congress_url"
+    t.string "congress_url",   null: false
   end
 
   create_table "issues", force: :cascade do |t|
-    t.text "description"
+    t.text "description", null: false
   end
 
   create_table "politician_stances", force: :cascade do |t|
-    t.integer "politician_id"
-    t.integer "stance_id"
+    t.integer "politician_id", null: false
+    t.integer "stance_id",     null: false
   end
 
   create_table "politicians", force: :cascade do |t|
-    t.string "bioguide_id"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "bioguide_id",          null: false
+    t.string "first_name",           null: false
+    t.string "last_name",            null: false
     t.string "middle_name"
     t.string "nickname"
     t.string "name_suffix"
-    t.string "party"
-    t.string "phone"
-    t.string "website"
-    t.string "office"
-    t.string "contact_form"
-    t.string "fax"
+    t.string "party",                null: false
+    t.string "phone",                null: false
+    t.string "website",              null: false
+    t.string "office",               null: false
+    t.string "contact_form",         null: false
+    t.string "fax",                  null: false
     t.string "twitter_id"
     t.string "campaign_twitter_ids"
     t.string "youtube_id"
@@ -59,22 +59,25 @@ ActiveRecord::Schema.define(version: 20150123001103) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.integer "issue_id"
-    t.text    "description"
+    t.integer "issue_id",    null: false
+    t.text    "description", null: false
   end
 
   create_table "stances", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "position_id"
+    t.integer "user_id",     null: false
+    t.integer "position_id", null: false
   end
 
   create_table "upvotes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "stance_id"
+    t.integer "user_id",   null: false
+    t.integer "stance_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "first_name",                          null: false
+    t.string   "last_name",                           null: false
+    t.string   "middle_name",            default: ""
+    t.string   "email",                               null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
