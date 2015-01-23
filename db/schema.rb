@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122231951) do
+ActiveRecord::Schema.define(version: 20150123001103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20150122231951) do
     t.integer "politician_id"
   end
 
+  create_table "bills", force: :cascade do |t|
+    t.string "title"
+    t.string "summary"
+    t.string "official_title"
+    t.string "short_title"
+    t.string "popular_title"
+    t.string "congress_url"
+  end
+
   create_table "issues", force: :cascade do |t|
     t.text "description"
   end
@@ -28,6 +37,25 @@ ActiveRecord::Schema.define(version: 20150122231951) do
   create_table "politician_stances", force: :cascade do |t|
     t.integer "politician_id"
     t.integer "stance_id"
+  end
+
+  create_table "politicians", force: :cascade do |t|
+    t.string "bioguide_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "middle_name"
+    t.string "nickname"
+    t.string "name_suffix"
+    t.string "party"
+    t.string "phone"
+    t.string "website"
+    t.string "office"
+    t.string "contact_form"
+    t.string "fax"
+    t.string "twitter_id"
+    t.string "campaign_twitter_ids"
+    t.string "youtube_id"
+    t.string "facebook_id"
   end
 
   create_table "positions", force: :cascade do |t|
