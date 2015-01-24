@@ -10,6 +10,7 @@ def bills(fields, page_count, page_number)
   return JSON.parse(open(API + "/bills?apikey=#{API_KEY}&per_page=#{page_count}&page=#{page_number}&fields=" + fields).read)
 end
 
+
 number_of_bills = bills(bill_fields, 50, 1)["count"]
 i = 1
 
@@ -150,3 +151,8 @@ def insert_details
 end
 insert_basic_politicians
 insert_details
+
+50.times do
+  User.create(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.safe_email, username: Faker::Internet.user_name, password:'a')
+end
+
