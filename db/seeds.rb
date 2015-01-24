@@ -169,3 +169,7 @@ issue_positions.each do |issue, position_array|
   new_issue = Issue.create(description: issue)
   position_array.each { |position| new_issue.positions.create(description: position) }
 end
+
+Position.all.each do |position|
+  position.stances.create(user_id: rand(User.all.count + 1))
+end
