@@ -156,3 +156,16 @@ insert_details
   User.create(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.safe_email, username: Faker::Internet.user_name, password:'a')
 end
 
+issue_positions = {
+  "Immigration" => ["nativism", "open immigration", "more open borders", "more closed borders"],
+  "Healthcare" => ["universal health care", "publicly-funded health care", "two-tier health care"],
+  "Minimum Wage" => ["indexing to inflation", "raising the minimum wage", "lowering the minimum wage"],
+  "Personal Income Taxation" => ["progressive taxation", "regressive taxation", "proportional taxation"],
+  "Government Surveillance" => ["allowing collection of 'meta-data'", "allowing unrestricted surveillance so long as it's tied to the purpose of national security", "disallowing the government from collecting 'meta-data'", "disallowing all covert surveillance on any U.S. citizen"
+  ]
+}
+
+issue_positions.each do |issue, position_array|
+  new_issue = Issue.create(description: issue)
+  position_array.each { |position| new_issue.positions.create(description: position) }
+end
