@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#logout'
   get '/signup', to: 'users#new'
+  get '/legislators' to: 'legislators#index'
+  get '/legislator/:id' to: 'legislators#show'
 
   resources :users
 
