@@ -1,3 +1,4 @@
+require 'faker'
 require 'open-uri'
 require 'json'
 
@@ -8,8 +9,6 @@ bill_fields = "official_title,popular_title,short_title,summary,summary_short,ur
 def bills(fields, page_count, page_number)
   return JSON.parse(open(API + "/bills?apikey=#{API_KEY}&per_page=#{page_count}&page=#{page_number}&fields=" + fields).read)
 end
-
-
 
 number_of_bills = bills(bill_fields, 50, 1)["count"]
 i = 1
