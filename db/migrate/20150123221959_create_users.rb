@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :middle_name, default: ''
       t.string :username, null: false
       t.string :city
+      t.string :state
       t.text :about
 
       t.string :password_digest, null: false
