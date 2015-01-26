@@ -20,12 +20,20 @@ $(document).ready(function(){
     $legislator_amounts.text((total_amount/legislator_count).toFixed(2))
     $sliderBlocks.each(function(){
       $('.range-slider', this).foundation('slider', 'set_value', eachPercentage);
+      $('.range-slider', this).addClass('active');
     })
     addEventListeners();
   };
 
   $("#donation_amount").on("keyup", setSliders);
 
+  // $('[data-slider]')
+  // .mousedown(function() {
+  //   target_current_percentage = event.target.parentElement.dataset.slider
+  // })
+  // .mouseup(function() {
+  //   target_new_percentage = event.target.parentElement.dataset.slider
+  // });
 
   var updateAmountsAndSliders = function(event){
     var total_amount = $total_amount.val();
@@ -37,48 +45,37 @@ $(document).ready(function(){
     var target_new_amount = total_amount * (target_new_percentage/100);
 
     var target_percentage_diff = target_current_percentage - target_new_percentage;
-    console.log("-----target_percentage_diff", target_percentage_diff);
-
+    // console.log('out',target_percentage_diff)
     var friend_perct_diff = target_percentage_diff / legislator_count - 1;
     $(event.target).closest('.legislator_slider_block').children().first().children('span').text(target_new_amount.toFixed(2));
     var friends = $(event.target).closest('.legislator_slider_block').siblings()
 
-    console.log("target_current_percentage", target_current_percentage, "target_new_percentage", target_new_percentage);
-
     removeEventListeners();
     friends.each(function(){
       var friend_current_percentage = $('.range-slider', this)[0].dataset.slider;
-      // console.log("friend_current_percentage", friend_current_percentage, "friend_perct_diff", friend_perct_diff);
-      var willBeUpdatedFriendsCount = -1;
-      $('.range-slider', $sliderBlocks).each(function(){
-        if(this.dataset.slider < 100 && this.dataset.slider > 0){
-          willBeUpdatedFriendsCount += 1;
-          console.log(willBeUpdatedFriendsCount);
-        }
-      });
-
       if(friend_current_percentage < 0.01 && friend_perct_diff < 0.01){
-        // otherLegislatorCount -= 1;
-        friend_perct_diff = target_percentage_diff / friends.length;
-        var friend_new_percentage = 0.00;
-        var friend_new_amount = 0.00;
-      }else if(friend_current_percentage > 99.99 && friend_perct_diff > 0){
-        // otherLegislatorCount -= 1;
-        friend_perct_diff = target_percentage_diff / friends.length;
-        var friend_new_percentage = 100;
-        var friend_new_amount = total_amount;
+        $('.range-slider', this).removeClass('active');
+      }else if(friend_current_percentage > 99.98 && friend_perct_diff > 0){
+        $('.range-slider', this).removeClass('active');
       }else{
-        friend_perct_diff = target_percentage_diff / willBeUpdatedFriendsCount;
-        var friend_new_percentage = parseInt(friend_current_percentage) + friend_perct_diff;
-        var friend_new_amount = total_amount * (friend_new_percentage/100);
 
       }
-
-      var friend_new_amount = total_amount * (friend_new_percentage/100);
-      $(this).children().last().foundation('slider', 'set_value', friend_new_percentage);
-
-      $(this).children().first().children('span').text(friend_new_amount);
     });
+
+    var activeFriends = $('.active');
+
+    activeFriends.each(function(){
+      var friend_current_percentage = this.dataset.slider;
+      friend_perct_diff = target_percentage_diff / activeFriends.length;
+      var friend_new_percentage = parseInt(friend_current_percentage) + friend_perct_diff;
+      var friend_new_amount = total_amount * (friend_new_percentage/100);
+// debugger
+      $(this).foundation('slider', 'set_value', friend_new_percentage);
+
+      $('.legislator_amount', $(this).closest('.legislator_slider_block')).text(friend_new_amount.toFixed(2));
+
+    })
+
     addEventListeners();
   }
 

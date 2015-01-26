@@ -31,7 +31,7 @@
 </div>
 </br>
 
-<ul>
+<ul class="legi_slider_list">
   <% @legislators.each do |legislator| %>
     <div class="legislator_slider_block" data-legislator-id="<%= legislator.id %>">
       <div class="row">
@@ -39,7 +39,7 @@
       </div>
       <div class="row">
         <div class="small-9 medium-9 columns">
-          <div class="range-slider" data-slider data-options="">
+          <div class="range-slider" data-slider data-options="step: 0.01;">
             <span class="range-slider-handle" role="slider" tabindex="0"></span>
             <span class="range-slider-active-segment"></span>
             <input type="hidden" class="legi_slider">
