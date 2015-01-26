@@ -33,19 +33,20 @@
 
 <ul>
   <% @legislators.each do |legislator| %>
-    <div class="row">
-      <%= legislator.first_name %> <%= legislator.last_name %> <span class="legislator_amount" id="a<%= legislator.id %>"></span>
-    </div>
-    <div class="row">
-      <div class="small-9 medium-9 columns">
-        <div class="range-slider" data-slider data-options="">
-          <span class="range-slider-handle" role="slider" tabindex="0"></span>
-          <span class="range-slider-active-segment"></span>
-          <input type="hidden" class="legi_slider" id="s<%= legislator.id %>">
+    <div class="legislator_slider_block" data-legislator-id="<%= legislator.id %>">
+      <div class="row">
+        <%= legislator.first_name %> <%= legislator.last_name %> <span class="legislator_amount"></span>
+      </div>
+      <div class="row">
+        <div class="small-9 medium-9 columns">
+          <div class="range-slider" data-slider data-options="">
+            <span class="range-slider-handle" role="slider" tabindex="0"></span>
+            <span class="range-slider-active-segment"></span>
+            <input type="hidden" class="legi_slider">
+          </div>
         </div>
       </div>
     </div>
-
 
   <% end %>
 </ul>
