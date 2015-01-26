@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   end
 
   get '/search', to: 'stances#search'
+<<<<<<< Updated upstream
   get '/stances/issues/:select', to: 'stances#select'
+=======
+  get 'stances/:select', to: 'stances#select'
+  get 'stances/:sort', to: 'stances#sort'
+>>>>>>> Stashed changes
 
   resources :users
 end
