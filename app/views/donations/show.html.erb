@@ -1,40 +1,47 @@
 <%= render :partial => 'stripe/js' %>
+<div class="row centered">
+  <div class="medium-6 medium-centered">
+    <div class="small-5 medium-6 columns">
+      <h3 id="amount">Total donation amount:</h3>
+    </div>
+    <div class="small-5 medium-6 columns">
+      <%= form_for :donation, html: {class: "donate-form"} do |f|%>
+        <% @legislators.each do |legislator| %>
+          <%= f.hidden_field :legislator_ids, :multiple => true, :value => legislator.id %>
+        <% end %>
+        <%= f.text_field :amount, placeholder: "Amount" %>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-  <div class="small-3 medium-4 columns">
-    <h2 id="amount">Total donation amount:</h2>
-  </div>
-  <div class="small-3 medium-4 columns">
-    <%= form_for :donation, html: {class: "donate-form"} do |f|%>
-      <% @legislators.each do |legislator| %>
-        <%= f.hidden_field :legislator_ids, :multiple => true, :value => legislator.id %>
-      <% end %>
-      <%= f.text_field :amount, placeholder: "Amount" %>
-  </div>
-  <div class="small-3 medium-4 columns">
-        <input data-stripe="number"/>
+  <div class="small-8 medium-9 columns">
+    <input data-stripe="number"/>
     cvc
     <input data-stripe="cvc"/>
     exp-month
     <input data-stripe="exp-month"/>
     exp-year
     <input data-stripe="exp-year"/>
-      <%= f.submit "Donate"%>
-    <% end %>
   </div>
+  <div class="small-2 medium-3 columns">
+    <%= f.submit "Donate"%>
+  </div>
+    <% end %>
 </div>
-
+</br>
 
 <ul>
   <% @legislators.each do |legislator| %>
     <div class="row">
-      <%= legislator.first_name %> <%= legislator.last_name %> <span class="amount" id="<%= legislator.id %>"></span>
+      <%= legislator.first_name %> <%= legislator.last_name %> <span class="legislator_amount" id="a<%= legislator.id %>"></span>
     </div>
     <div class="row">
       <div class="small-9 medium-9 columns">
-        <div class="range-slider" data-slider >
+        <div class="range-slider" data-slider data-options="">
           <span class="range-slider-handle" role="slider" tabindex="0"></span>
           <span class="range-slider-active-segment"></span>
-          <input type="hidden">
+          <input type="hidden" class="legi_slider" id="s<%= legislator.id %>">
         </div>
       </div>
     </div>
