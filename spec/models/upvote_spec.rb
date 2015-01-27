@@ -17,6 +17,7 @@ describe Upvote do
 
   context 'upvote creation' do
     before :each do
+      # use let()
       @user = FactoryGirl.create(:user)
       @stance = @user.stances.create(attributes_for(:stance))
       @upvote = @stance.upvotes.create(attributes_for(:upvote))

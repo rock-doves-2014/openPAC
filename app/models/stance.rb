@@ -13,6 +13,7 @@ class Stance < ActiveRecord::Base
     author: User.find(user_id) }
   end
 
+  # This is nasty.  Surely there's a better way to do this?
   def self.search(words)
     words.split(' ').map do |word|
       Stance.all.select do |s|

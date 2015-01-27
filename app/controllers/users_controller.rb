@@ -37,6 +37,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    # this seems needlessly complex.  Is this just setting a boolean flag?
+    # Does it require two method calls (admin_param_fix and param_to_bool to
+    # adjust that?)
+
     admin_param_fix
     redirect_to :root unless current_user.id == @user.id
     if @user.update(user_params)

@@ -14,6 +14,7 @@ describe StancesController do
     let(:user) {FactoryGirl.create(:user)}
     it "redirects to #show" do
       session[:id] = user.id
+      # You don't want hard-coded values in your test like this.
       @stance = { position_id: 1, user_id: 1}
       post :create, {stance: @stance}
       expect(response).to redirect_to stance_path(Stance.last)
@@ -23,9 +24,9 @@ describe StancesController do
 
   describe 'GET #show' do
     it "renders the #show template" do
-      FactoryGirl.create(:position)
-      FactoryGirl.create(:user)
-      @stance = Stance.create(position_id: 1, user_id: 1)
+      FactoryGirl.create(:position) #let()
+      FactoryGirl.create(:user) #let()
+      @stance = Stance.create(position_id: 1, user_id: 1) #user.stances.create() ?
       get :show, id: @stance.id
       expect(response).to render_template :show
     end

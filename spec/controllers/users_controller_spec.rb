@@ -19,6 +19,7 @@ describe UsersController do
 
 	describe 'POST #create' do
 		xit "redirects to #root" do
+      # let()
 			@user = {first_name: "a", last_name: "a", username: "a", password: "123", password_confirmation: "123"}
 			post :create, user: @user
 			expect(response).to redirect_to :root

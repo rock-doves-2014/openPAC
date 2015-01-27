@@ -28,6 +28,8 @@ class StancesController < ApplicationController
       flash[:alert] = "ERROR: #{@stances.errors.full_messages.join("; ")}"
       render :new
     end
+
+    # How could you ever get here?    You render or redirect, right?
     if params[:legislator_id]
       legislator_ids = params[:legislator_id].select{ |k,v| v == "true" }.keys.map(&:to_i)
       legislator_ids.each { |l_id| @stance.legislator_stances.create(legislator_id: l_id) }
