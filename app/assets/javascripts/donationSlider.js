@@ -30,7 +30,10 @@ $(document).ready(function(){
   var updateAmountsAndSliders = function(event){
     var total_amount = $total_amount.val();
 
-    var target_current_amount = $('span', $(event.target).closest('.legislator_slider_block')).text();
+    // See documentation:
+    // http://foundation.zurb.com/docs/components/range_slider.html
+    // "Getting and Setting Values"
+    var target_current_amount = $(event.target).attr('data-slider');
     var target_current_percentage = (target_current_amount/total_amount)*100.00;
 
     var target_new_percentage = event.target.dataset.slider;
