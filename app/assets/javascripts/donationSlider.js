@@ -35,11 +35,14 @@ $(document).ready(function(){
 
     var target_new_percentage = event.target.dataset.slider;
     var target_new_amount = total_amount * (target_new_percentage/100);
-
+    if(isNaN(target_new_amount)){
+      alert("total_amount: "+total_amount+", target_new_percentage: "+target_new_percentage)
+    }
+console.log(target_new_amount);
     var target_percentage_diff = target_current_percentage - target_new_percentage;
     // console.log('out',target_percentage_diff)
     // var friend_perct_diff = target_percentage_diff / legislator_count - 1;
-    $(event.target).closest('.legislator_slider_block').children().first().children('span').text(target_new_amount.toFixed(2));
+    $(event.target).closest('.legislator_slider_block').children().first().children('span').text(target_new_amount);
 
     // $('.range-slider').each(function(){
     //   var friend_current_percentage = this.dataset.slider;
@@ -55,6 +58,13 @@ $(document).ready(function(){
 
     removeEventListeners();
 
+    if(target_percentage_diff>0){
+      $('.range-slider').each(function(){
+        if($(this).attr('class') === "range-slider"){
+          $(this).addClass('active');
+        };
+      })
+    }
 
 
     // var friends = $(event.target).closest('.legislator_slider_block').siblings()
@@ -83,15 +93,13 @@ $(document).ready(function(){
         $(this).removeClass('active');
         $(this).foundation('slider', 'set_value', 100);
         $('.legislator_amount', $(this).closest('.legislator_slider_block')).text(total_amount);
-      }else if($(this).attr('class') === "range-slider"){
-        debugger
-        $(this).addClass('active');
       }else{
+        // console.log(friend_new_percentage);
         var friend_new_amount = total_amount * (friend_new_percentage/(100));
         // console.log(friend_new_percentage);
         $(this).foundation('slider', 'set_value', friend_new_percentage);
 
-        $('.legislator_amount', $(this).closest('.legislator_slider_block')).text(friend_new_amount.toFixed(2));
+        $('.legislator_amount', $(this).closest('.legislator_slider_block')).text(friend_new_amount);
 
       }
 
