@@ -5,6 +5,7 @@
         <ul class="side-nav">
           <li class="heading">Issues</li>
           <% @issues.each do |issue| %>
+            <%# link_to %>
             <li><a href="/stances/issues/<%= issue.description %>" data-search><%= issue.description %></a></li>
           <% end %>
         </ul>

@@ -7,7 +7,6 @@ class Issue < ActiveRecord::Base
   validates_presence_of :description
 
   def self.fetch(num)
-    # This is performance sub-optimal.  Check out `pluck`
     Issue.all.shuffle.slice(0..num)
   end
 end

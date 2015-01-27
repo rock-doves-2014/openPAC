@@ -16,7 +16,9 @@
               <% @legislators.each do |legislator| %>
               <li>
                 <img title="<%= legislator.name %>" id="<%= legislator.id %>" src="<%= legislator.img_url %>" class="legislator-pic" />
+                <!-- no.  link_to -->
                 <a href="/legislators/<%= legislator.id %>"><p class="name"><%= legislator.name %></p></a>
+                <!-- no.  not sensible HTML.  an <a> does not contain a <p>. -->
               </li>
               <% end %>
             </ul>

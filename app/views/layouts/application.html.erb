@@ -7,6 +7,7 @@
     <title>openPAC</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
+    <!-- i would hate for the CDN to be out during a demo?  Why not keep local in vendor/assets/javascripts? -->
     <script src="http://listjs.com/no-cdn/list.js"></script>
     <script src="http://listjs.com/no-cdn/list.fuzzysearch.js"></script>
     <%= csrf_meta_tags %>
@@ -24,6 +25,7 @@
 
     <section class="top-bar-section">
       <!-- Left Nav Section -->
+      <!-- Partials? -->
       <ul class="left">
       <% if !logged_in? %>
         <li><%= link_to 'Login', login_path, method: :get %></li>

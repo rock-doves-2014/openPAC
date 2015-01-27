@@ -12,6 +12,7 @@ class Legislator < ActiveRecord::Base
   validates_uniqueness_of :bioguide_id
   validates_presence_of :bioguide_id, :first_name, :last_name
 
+  # Smells like a bad name.  `full_name`, `anglo_saxon_standard_full_name` ?
   def name
     "#{first_name} #{last_name}"
   end

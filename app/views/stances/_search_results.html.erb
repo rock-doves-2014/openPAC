@@ -1,6 +1,7 @@
 <div class="stances">
   <div class="large-9 medium-8 columns">
     <div class="small-block-grid-3">
+      <%# definitely not appropriate for view.... and...why? %>
       <% stances = @stances %>
       <% stances.each do |stance| %>
         <%= render partial: "stances/details", locals: {stance: stance} %>

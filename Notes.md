@@ -131,4 +131,19 @@ move the key based information out from rails-land and into this file e.g.
 Looks pretty!
 
 
+## App/
+
+### Models
+
+* Look good generally
+* A few tiny ugly methods (see in-line note)
+
+## Views
+
+* There's a good bit of logic and calculation in the views, see inline notes
+* Insufficient use of partials, there are a few places where you could
+  really DRY out the views e.g. legislators#show
+* learn to love `link_to`!
+
+
 

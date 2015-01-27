@@ -1,6 +1,7 @@
 <%= render :partial => 'stripe/js' %>
 <ul>
   <% @legislators.each do |legislator| %>
+    <%# a partial?  render partial: 'legislator', object: legislator would be nice %>
     <%= legislator.first_name %> <%= legislator.last_name %>
   <% end %>
 </ul>

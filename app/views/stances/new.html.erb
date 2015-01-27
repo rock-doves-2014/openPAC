@@ -34,6 +34,7 @@
             <ul class="small-block-grid-8 list">
               <% @legislators.each do |legislator| %>
               <li>
+                <%# img_tag would be helpful %>
                 <img title="<%= legislator.name %>" id="<%= legislator.id %>" src="<%= legislator.img_url %>" class="legislator-pic" />
                 <p class="name"><%= legislator.name %></p>
 

@@ -19,6 +19,7 @@
 <div class="row">
   <div class="large-12 columns center-text">
     <% @issues.each do |issue| %>
+      <%# seems fragile, this href= %>
     <em><a href="/stances/issues/<%= issue.description %>" data-search> <%= issue.description %></a></em>&nbsp&nbsp
     <% end %>
   </div>

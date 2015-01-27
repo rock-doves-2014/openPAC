@@ -14,6 +14,7 @@ class Stance < ActiveRecord::Base
   end
 
   # This is nasty.  Surely there's a better way to do this?
+  # It most assuredly deserves a unit test
   def self.search(words)
     words.split(' ').map do |word|
       Stance.all.select do |s|
