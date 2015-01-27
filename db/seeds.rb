@@ -4,6 +4,8 @@ User.create(first_name: 'a', last_name: 'a', last_name: 'a@a.com', username: 'a'
 SeedHelper::LegislatorSeed::insert_basic_legislators
 SeedHelper::LegislatorSeed::insert_details
 SeedHelper::LegislatorSeed::insert_image_url
+SeedHelper::Algorithm::create_issues(KEYWORDS)
+SeedHelper::Algorithm::seed_algorithm_data
 
 # seed fake legislators
 # 100.times do
